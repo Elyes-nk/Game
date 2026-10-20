@@ -25,6 +25,7 @@ import playerTwoTakeHit from "../assets/images/p2/Take hit.png";
 import playerTwoDeath from "../assets/images/p2/Death.png";
 import backgroundImg from "../assets/images/back.jpeg";
 import {
+  KEYS,
   TIE,
   PLAYER_1_WIN,
   PLAYER_2_WIN,
@@ -59,11 +60,12 @@ const useGame = () => {
   const playerOneHealthRef = useRef(playerOneHealth);
   const playerTwoHealthRef = useRef(playerTwoHealth);
 
+  const { player1: P1, player2: P2 } = KEYS;
   const keys = {
-    a: { pressed: false },
-    e: { pressed: false },
-    ArrowLeft: { pressed: false },
-    ArrowRight: { pressed: false },
+    [P1.left]: { pressed: false },
+    [P1.right]: { pressed: false },
+    [P2.left]: { pressed: false },
+    [P2.right]: { pressed: false },
   };
 
   useEffect(() => {
@@ -157,35 +159,35 @@ const useGame = () => {
     if (!resultRef.current && startedRef.current) {
       switch (e.key) {
         // player 1
-        case "a":
-          keys.a.pressed = true;
-          player1.lastKey = "a";
+        case P1.left:
+          keys[P1.left].pressed = true;
+          player1.lastKey = P1.left;
           break;
-        case "e":
-          keys.e.pressed = true;
-          player1.lastKey = "e";
+        case P1.right:
+          keys[P1.right].pressed = true;
+          player1.lastKey = P1.right;
           break;
-        case "z":
+        case P1.jump:
           player1.velo.y = -VELO_JUMP;
           break;
-        case " ":
+        case P1.attack:
           if (player1.image !== player1.sprites.takeHit.image) {
             player1.attack();
           }
           break;
         //  player 2
-        case "ArrowLeft":
-          keys.ArrowLeft.pressed = true;
-          player2.lastKey = "ArrowLeft";
+        case P2.left:
+          keys[P2.left].pressed = true;
+          player2.lastKey = P2.left;
           break;
-        case "ArrowRight":
-          keys.ArrowRight.pressed = true;
-          player2.lastKey = "ArrowRight";
+        case P2.right:
+          keys[P2.right].pressed = true;
+          player2.lastKey = P2.right;
           break;
-        case "ArrowUp":
+        case P2.jump:
           player2.velo.y = -VELO_JUMP;
           break;
-        case "Enter":
+        case P2.attack:
           if (player2.image !== player2.sprites.takeHit.image) {
             player2.attack();
           }
@@ -200,18 +202,18 @@ const useGame = () => {
     if (!resultRef.current && startedRef.current) {
       switch (e.key) {
         // player 1
-        case "a":
-          keys.a.pressed = false;
+        case P1.left:
+          keys[P1.left].pressed = false;
           break;
-        case "e":
-          keys.e.pressed = false;
+        case P1.right:
+          keys[P1.right].pressed = false;
           break;
         // player 2
-        case "ArrowLeft":
-          keys.ArrowLeft.pressed = false;
+        case P2.left:
+          keys[P2.left].pressed = false;
           break;
-        case "ArrowRight":
-          keys.ArrowRight.pressed = false;
+        case P2.right:
+          keys[P2.right].pressed = false;
           break;
         default:
           break;
@@ -433,10 +435,10 @@ const useGame = () => {
     // handle movement
     // player 1
     player1.velo.x = 0;
-    if (keys.a.pressed && player1.lastKey === "a") {
+    if (keys[P1.left].pressed && player1.lastKey === P1.left) {
       player1.velo.x = -VELO_RUN;
       player1.switchSprite("run");
-    } else if (keys.e.pressed && player1.lastKey === "e") {
+    } else if (keys[P1.right].pressed && player1.lastKey === P1.right) {
       player1.velo.x = VELO_RUN;
       player1.switchSprite("run");
     } else {
@@ -450,10 +452,10 @@ const useGame = () => {
 
     // player 2
     player2.velo.x = 0;
-    if (keys.ArrowLeft.pressed && player2.lastKey === "ArrowLeft") {
+    if (keys[P2.left].pressed && player2.lastKey === P2.left) {
       player2.velo.x = -VELO_RUN;
       player2.switchSprite("run");
-    } else if (keys.ArrowRight.pressed && player2.lastKey === "ArrowRight") {
+    } else if (keys[P2.right].pressed && player2.lastKey === P2.right) {
       player2.velo.x = VELO_RUN;
       player2.switchSprite("run");
     } else {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { KEYS } from "./consts";
 import { useGame } from "./hooks/useGame";
 import "twin.macro";
 import { Canvas, Layout, Container, GlobalStyles } from "./styles";
@@ -25,7 +26,7 @@ function App() {
   useEffect(() => {
     const onResize = () => setScale(getScale());
     const onKey = (e) => {
-      if (e.key === "f" || e.key === "F") toggleFullscreen();
+      if (e.key.toLowerCase() === KEYS.fullscreen) toggleFullscreen();
     };
     window.addEventListener("resize", onResize);
     window.addEventListener("keydown", onKey);
