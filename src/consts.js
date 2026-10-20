@@ -14,6 +14,12 @@ const KEYS = {
   fullscreen: "f",
 };
 
+// Attack hitboxes, relative to the fighter's position
+const ATTACK_BOX = {
+  player1: { offset: { x: 120, y: 60 }, width: 100, height: 50 },
+  player2: { offset: { x: -150, y: 60 }, width: 120, height: 50 },
+};
+
 const TIMES = 30;
 
 const VELO_RUN = 5;
@@ -21,4 +27,4 @@ const VELO_JUMP = 10;
 
 const GRAVITY = 0.7;
 
-export { KEYS, TIE, PLAYER_1_WIN, PLAYER_2_WIN, TIMES, VELO_RUN, VELO_JUMP, GRAVITY };
+export { ATTACK_BOX, KEYS, TIE, PLAYER_1_WIN, PLAYER_2_WIN, TIMES, VELO_RUN, VELO_JUMP, GRAVITY };

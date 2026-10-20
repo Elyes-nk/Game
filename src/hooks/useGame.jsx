@@ -25,6 +25,7 @@ import playerTwoTakeHit from "../assets/images/p2/Take hit.png";
 import playerTwoDeath from "../assets/images/p2/Death.png";
 import backgroundImg from "../assets/images/back.jpeg";
 import {
+  ATTACK_BOX,
   KEYS,
   TIE,
   PLAYER_1_WIN,
@@ -250,11 +251,7 @@ const useGame = () => {
       image: playerOneIdle,
       frames: 8,
       scale: 2.5,
-      attackBox: {
-        offset: { x: 115, y: 60 },
-        width: 150,
-        height: 50,
-      },
+      attackBox: ATTACK_BOX.player1,
       sprites: {
         idle: {
           src: playerOneIdle,
@@ -298,11 +295,7 @@ const useGame = () => {
       image: playerTwoIdle,
       frames: 4,
       scale: 2.25,
-      attackBox: {
-        offset: { x: -150, y: 60 },
-        width: 120,
-        height: 50,
-      },
+      attackBox: ATTACK_BOX.player2,
       sprites: {
         idle: {
           src: playerTwoIdle,
